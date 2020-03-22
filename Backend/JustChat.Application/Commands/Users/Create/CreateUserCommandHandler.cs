@@ -1,6 +1,6 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using JustChat.Application.Interfaces;
 using JustChat.Domain.Models.Users;
 using MediatR;
 
@@ -8,9 +8,17 @@ namespace JustChat.Application.Commands.Users.Create
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, User>
     {
-        public Task<User> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        private readonly IDataUnitOfWork _data;
+
+        public CreateUserCommandHandler(IDataUnitOfWork data)
         {
-            throw new NotImplementedException();
+            _data = data;
+        }
+
+        public async Task<User> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        {
+            var user = new User(request.Name);
+            return await _data.Users.AddAsync(user);
         }
     }
 }
