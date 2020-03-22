@@ -16,14 +16,17 @@ namespace JustChat.Persistence.Commands.Configurations
         {
             builder.ToTable(Pluralizer.Pluralize(typeof(TEntity).Name));
 
-            builder.Property<bool>(nameof(IDeletable.IsDeleted))
+            builder
+                .Property<bool>(nameof(IDeletable.IsDeleted))
                 .IsRequired(true)
                 .HasDefaultValue(false);
 
-            builder.Property<DateTime?>(nameof(IDeletable.DeletedOn))
+            builder
+                .Property<DateTime?>(nameof(IDeletable.DeletedOn))
                 .IsRequired(false);
 
-            builder.HasQueryFilter(x => EF.Property<bool>(x, nameof(IDeletable.IsDeleted)) == false);
+            builder
+                .HasQueryFilter(x => EF.Property<bool>(x, nameof(IDeletable.IsDeleted)) == false);
 
             builder.HasKey(x => x.Id);
             builder.Ignore(x => x.DomainEvents);
