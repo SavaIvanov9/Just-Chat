@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using JustChat.Application.Interfaces;
 
-namespace JustChat.Persistence.Commands.Interfaces
+namespace JustChat.Persistence.Interfaces
 {
     public interface ISpecificationEvaluationService<T>
         where T : class

@@ -2,7 +2,7 @@
 using JustChat.Application.Interfaces.Repositories;
 using JustChat.Domain.Interfaces;
 using JustChat.Domain.Models.Base;
-using JustChat.Persistence.Commands.Interfaces;
+using JustChat.Persistence.Interfaces;
 using JustChat.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,8 +20,8 @@ namespace JustChat.Persistence.Commands.Repositories
 
         public async Task<TEntity> AddAsync(TEntity entity)
         {
-            var entry = await _dbContext.Set<TEntity>().AddAsync(entity);
-            return entry.Entity;
+            await _dbContext.Set<TEntity>().AddAsync(entity);
+            return entity;
         }
 
         public Task UpdateAsync(TEntity entity)

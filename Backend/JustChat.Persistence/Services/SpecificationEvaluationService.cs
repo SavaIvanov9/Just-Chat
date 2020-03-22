@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using JustChat.Application.Interfaces;
-using JustChat.Persistence.Commands.Interfaces;
+using JustChat.Persistence.Interfaces;
 
-namespace JustChat.Persistence.Commands.Services
+namespace JustChat.Persistence.Services
 {
     internal class SpecificationEvaluationService<T> : ISpecificationEvaluationService<T>
         where T : class

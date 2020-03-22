@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JustChat.Application.Interfaces;
 using JustChat.Application.Interfaces.Repositories;
-using JustChat.Persistence.Commands.Interfaces;
+using JustChat.Persistence.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace JustChat.Persistence.Repositories
