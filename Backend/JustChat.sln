@@ -9,17 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D53110E8-BDD2-488E-ACDD-97CD1DA7D5BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustChat.Api", "JustChat.Api\JustChat.Api.csproj", "{D15A27E2-75A0-4935-84E9-3F98414A3DF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustChat.Api", "JustChat.Api\JustChat.Api.csproj", "{D15A27E2-75A0-4935-84E9-3F98414A3DF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustChat.Application", "JustChat.Application\JustChat.Application.csproj", "{A77506EC-54D8-4F17-8988-B33A596134F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustChat.Application", "JustChat.Application\JustChat.Application.csproj", "{A77506EC-54D8-4F17-8988-B33A596134F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustChat.Domain", "JustChat.Domain\JustChat.Domain.csproj", "{20762F5B-79EF-4AE8-A641-101CF7375A15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustChat.Domain", "JustChat.Domain\JustChat.Domain.csproj", "{20762F5B-79EF-4AE8-A641-101CF7375A15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustChat.Persistence", "JustChat.Persistence\JustChat.Persistence.csproj", "{02A148A6-6EBD-4104-BA92-1CE709A860EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustChat.Persistence", "JustChat.Persistence\JustChat.Persistence.csproj", "{02A148A6-6EBD-4104-BA92-1CE709A860EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustChat.Persistence.Commands", "JustChat.Persistence.Commands\JustChat.Persistence.Commands.csproj", "{0DAB4AC7-3DF0-46CB-947C-DB25476A205B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustChat.Persistence.Commands", "JustChat.Persistence.Commands\JustChat.Persistence.Commands.csproj", "{0DAB4AC7-3DF0-46CB-947C-DB25476A205B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustChat.Mediator", "JustChat.Mediator\JustChat.Mediator.csproj", "{B75CDF36-079A-4D30-9E14-82D81228F903}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustChat.Mediator", "JustChat.Mediator\JustChat.Mediator.csproj", "{B75CDF36-079A-4D30-9E14-82D81228F903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

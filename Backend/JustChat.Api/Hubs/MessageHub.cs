@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using JustChat.Api.Models.Messages;
-using JustChat.Api.Models.Users;
 using JustChat.Application.Commands.Messages.Create;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;

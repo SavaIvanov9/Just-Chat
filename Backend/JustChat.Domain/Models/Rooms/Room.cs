@@ -8,7 +8,6 @@ namespace JustChat.Domain.Models.Rooms
     {
         private string _name;
         private RoomType _type;
-        private readonly HashSet<Message> _messages;
 
         public Room(string name, RoomType type)
             : this()
@@ -20,7 +19,6 @@ namespace JustChat.Domain.Models.Rooms
         protected Room()
             : base(() => new EntityValidator())
         {
-            _messages = new HashSet<Message>();
         }
 
         public string Name
@@ -41,16 +39,6 @@ namespace JustChat.Domain.Models.Rooms
                 _type = value;
                 ValidateProperty(nameof(_type));
             }
-        }
-
-        public IReadOnlyCollection<Message> Messages => _messages;
-
-        public Message CreateMessage(string userId, string content)
-        {
-            var message = new Message(userId, content);
-            _messages.Add(message);
-
-            return message;
         }
     }
 }
