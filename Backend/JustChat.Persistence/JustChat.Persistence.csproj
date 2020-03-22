@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JustChat.Application\JustChat.Application.csproj" />
+    <ProjectReference Include="..\JustChat.Persistence.Commands\JustChat.Persistence.Commands.csproj" />
+  </ItemGroup>
+
+</Project>
