@@ -14,6 +14,7 @@ using JustChat.Mediator;
 using System.Reflection;
 using FluentValidation.AspNetCore;
 using JustChat.Application.Commands.Messages.Create;
+using Microsoft.OpenApi.Models;
 
 namespace JustChat.Api
 {
@@ -50,18 +51,8 @@ namespace JustChat.Api
             var commandDbConnectionString = Configuration.GetConnectionString("commandDbConnection");
             services.RegisterPersistenceDepenencies(commandDbConnectionString);
 
-            services.RegisterMediator(
-                new[]
-                {
-                    typeof(CreateMessageCommandHandler).GetTypeInfo().Assembly,
-                },
-                configure =>
-                {
-                    configure
-                        .WithLoggingBehavior()
-                        .WithPersistableBehavior()
-                        .WithValidationBehavior();
-                });
+            RegisterMediator(services);
+            RegisterSwagger(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +63,13 @@ namespace JustChat.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger");
+                c.RoutePrefix = string.Empty;
+            });
+
             app.UseRouting();
             app.UseCors(_corsPolicyName);
             app.UseAuthorization();
@@ -81,6 +79,31 @@ namespace JustChat.Api
                 endpoints.MapControllers();
                 endpoints.MapHub<MessageHub>("/MessageHub");
             });
+        }
+
+        private void RegisterSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Just Chat API", Version = "v1" });
+            });
+        }
+
+
+        private void RegisterMediator(IServiceCollection services)
+        {
+            services.RegisterMediator(
+               new[]
+               {
+                    typeof(CreateMessageCommandHandler).GetTypeInfo().Assembly,
+               },
+               configure =>
+               {
+                   configure
+                       .WithLoggingBehavior()
+                       .WithPersistableBehavior()
+                       .WithValidationBehavior();
+               });
         }
     }
 }
