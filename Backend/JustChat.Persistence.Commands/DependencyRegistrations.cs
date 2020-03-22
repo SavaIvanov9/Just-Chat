@@ -1,6 +1,6 @@
-﻿using JustChat.Application.Interfaces;
-using JustChat.Persistence.Commands;
-using JustChat.Persistence.Commands.Repositories;
+﻿using JustChat.Persistence.Commands;
+using JustChat.Persistence.Commands.Interfaces;
+using JustChat.Persistence.Commands.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,8 +12,7 @@ namespace JustChat.Persistence
             this IServiceCollection services, string tripsCommandDbConnectionString)
         {
             services.AddDbContext<CommandDbContext>(c => c.UseSqlServer(tripsCommandDbConnectionString));
-            services.AddTransient(typeof(IMutatableRepository<>), typeof(MutatableRepository<>));
-
+            services.AddScoped(typeof(ISpecificationEvaluationService<>), typeof(SpecificationEvaluationService<>));
             return services;
         }
     }

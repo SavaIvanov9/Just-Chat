@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using JustChat.Application.Interfaces;
+using JustChat.Application.Interfaces.Repositories;
 using JustChat.Domain.Models.Rooms;
 using JustChat.Domain.Models.Users;
 using JustChat.Persistence.Commands;
@@ -14,16 +15,20 @@ namespace JustChat.Persistence
         public DataUnitOfWork(
             CommandDbContext commandDbContext,
             IMutatableRepository<User> users,
-            IMutatableRepository<Room> rooms)
+            IMutatableRepository<Room> rooms,
+            IMutatableRepository<Message> messages)
         {
             _commandDbContext = commandDbContext;
             Users = users;
             Rooms = rooms;
+            Messages = messages;
         }
 
         public IMutatableRepository<User> Users { get; }
 
         public IMutatableRepository<Room> Rooms { get; }
+
+        public IMutatableRepository<Message> Messages { get; }
 
         public bool HasActiveTransaction => _commandDbContext.HasActiveTransaction;
 

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using JustChat.Domain.Interfaces;
 
-namespace JustChat.Application.Interfaces
+namespace JustChat.Application.Interfaces.Repositories
 {
-    public interface IMutatableRepository<T>
+    public interface IMutatableRepository<T> : IReadableRepository<T>
         where T : class, IAggregateRoot
     {
         Task<T> AddAsync(T entity);

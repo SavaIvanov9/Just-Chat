@@ -1,19 +1,21 @@
 ﻿using System.Threading.Tasks;
-using JustChat.Application.Interfaces;
+using JustChat.Application.Interfaces.Repositories;
 using JustChat.Domain.Interfaces;
 using JustChat.Domain.Models.Base;
+using JustChat.Persistence.Commands.Interfaces;
+using JustChat.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace JustChat.Persistence.Commands.Repositories
 {
-    public class MutatableRepository<TEntity> : IMutatableRepository<TEntity>
+    public class MutatableRepository<TEntity> : ReadableRepository<TEntity>, IMutatableRepository<TEntity>
          where TEntity : Entity, IAggregateRoot
     {
-        private readonly CommandDbContext _dbContext;
-
-        public MutatableRepository(CommandDbContext dbContext)
+        public MutatableRepository(
+            CommandDbContext dbContext,
+            ISpecificationEvaluationService<TEntity> specificationEvaluationService)
+            : base(dbContext, specificationEvaluationService)
         {
-            _dbContext = dbContext;
         }
 
         public async Task<TEntity> AddAsync(TEntity entity)
