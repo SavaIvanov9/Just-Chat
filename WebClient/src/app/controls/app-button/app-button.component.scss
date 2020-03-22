@@ -1,0 +1,19 @@
+.default-button {
+    border-radius: 4px;
+    vertical-align: bottom;
+    color: rgb(255, 255, 255);
+    background-color: #003780;;
+    font-size: 25px;
+    width: 200px;
+    height: 50px;
+    top: 50px;
+  }
+  
+  .default-button:hover {
+    color: #003780;
+    background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: thin;
+    border-color: #003780;
+  }
+  
