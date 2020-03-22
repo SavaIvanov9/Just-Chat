@@ -1,14 +1,15 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using JustChat.Domain.Models.Rooms;
 using MediatR;
 
 namespace JustChat.Application.Commands.Messages.CreateMessage
 {
-    public class CreateMessageCommandHandler : IRequestHandler<CreateMessageCommand, Unit>
+    public class CreateMessageCommandHandler : IRequestHandler<CreateMessageCommand, Message>
     {
-        public Task<Unit> Handle(CreateMessageCommand request, CancellationToken cancellationToken)
+        public Task<Message> Handle(CreateMessageCommand request, CancellationToken cancellationToken)
         {
-            return Unit.Task;
+            return null;
         }
     }
 }
