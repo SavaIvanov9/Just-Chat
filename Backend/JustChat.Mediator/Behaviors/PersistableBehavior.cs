@@ -17,7 +17,7 @@ namespace JustChat.Mediator.Behaviors
         public async Task<TResponse> Handle(
             TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            if (request.GetType().IsSubclassOf(typeof(ICommand<TResponse>)) == false
+            if (request is ICommand<TResponse> == false
                 || _data.HasActiveTransaction)
             {
                 return await next();

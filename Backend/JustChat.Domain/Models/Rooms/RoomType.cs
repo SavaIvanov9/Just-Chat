@@ -11,5 +11,10 @@ namespace JustChat.Domain.Models.Rooms
             : base(name, value)
         {
         }
+
+        protected RoomType()
+            : base()
+        {
+        }
     }
 }
