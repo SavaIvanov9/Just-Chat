@@ -1,0 +1,37 @@
+<div class="container">
+  <h3 id="title">Register</h3>
+  <form id="register-form">
+    <!-- username -->
+    <mat-form-field class="full-width">
+      <input [formControl]="userNameFormControl" matInput placeholder="username" minlength="1" maxlength="50" required />
+      <mat-error *ngIf="userNameFormControl.hasError('required')">
+        Username is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="userNameFormControl.hasError('minlength')">
+        Username must be minimum 1 character long
+      </mat-error>
+      <mat-error *ngIf="userNameFormControl.hasError('maxlength')">
+        Username can be maximum 50 characters long
+      </mat-error>
+    </mat-form-field>
+
+    <!-- password -->
+    <!-- <mat-form-field class="full-width">
+      <input [formControl]="passwordFormControl" matInput placeholder="Password" minlength="5" maxlength="30" required />
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('pattern')">
+        Password is not valid
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('minlength')">
+        Password must be minimum 5 characters long
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('maxlength')">
+        Password can be maximum 30 characters long
+      </mat-error>
+    </mat-form-field> -->
+
+    <app-button label="Register" (action)="register()"></app-button>
+  </form>
+</div>

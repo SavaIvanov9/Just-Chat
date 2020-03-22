@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+  // position: fixed;
+  // top: 30%;
+  // left: 50%;
+  // -webkit-transform: translate(-50%, -50%);
+  // transform: translate(-50%, -50%);
+}
+
+#title {
+  text-align: center;
+}
+
+#register-form {
+  margin: 0 auto;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.continue {
+  background-color: rgb(1, 107, 168);
+  top: -5px;
+  &:hover {
+    background-color: rgb(4, 60, 90);
+  }
+}
