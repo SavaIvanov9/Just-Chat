@@ -1,14 +1,14 @@
 ﻿using JustChat.Application.Interfaces;
-using MediatR;
+using JustChat.Domain.Models.Rooms;
 
-namespace JustChat.Application.Commands.Messages.CreateMessage
+namespace JustChat.Application.Commands.Messages.Create
 {
-    public class CreateMessageCommand : ICommand<Unit>
+    public class CreateMessageCommand : ICommand<Message>
     {
         public string UserId { get; set; }
 
         public string RoomId { get; set; }
-        
+
         public string Content { get; set; }
     }
 }

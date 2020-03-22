@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using JustChat.Domain.Models.Rooms;
 using MediatR;
 
-namespace JustChat.Application.Commands.Messages.CreateMessage
+namespace JustChat.Application.Commands.Messages.Create
 {
     public class CreateMessageCommandHandler : IRequestHandler<CreateMessageCommand, Message>
     {
