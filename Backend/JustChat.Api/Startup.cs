@@ -77,7 +77,7 @@ namespace JustChat.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<MessageHub>("/MessageHub");
+                endpoints.MapHub<MessageHub>("/api/MessageHub");
             });
         }
 

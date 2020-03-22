@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JustChat.Api.Controllers
 {
-    public class UserController : BaseController
+    public class RegisterController : BaseController
     {
-        public UserController(IMediator mediator)
+        public RegisterController(IMediator mediator)
             : base(mediator)
         {
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateUserResponse>> Create([FromBody]CreateUserRequest request)
+        public async Task<ActionResult<CreateUserResponse>> Register([FromBody]CreateUserRequest request)
         {
             var command = new CreateUserCommand
             {
@@ -25,7 +25,7 @@ namespace JustChat.Api.Controllers
 
             var response = new CreateUserResponse
             {
-                Id = user.Id
+                UserId = user.Id
             };
 
             return this.Ok(response);
