@@ -1,4 +1,4 @@
-﻿namespace JustChat.Api.Models
+﻿namespace JustChat.Api.Models.Messages
 {
     public class CreateMessageRequest
     {

@@ -11,9 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using JustChat.Persistence;
 using JustChat.Mediator;
-using JustChat.Application.Commands.Messages.CreateMessage;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using JustChat.Application.Commands.Messages.Create;
 
 namespace JustChat.Api
 {
