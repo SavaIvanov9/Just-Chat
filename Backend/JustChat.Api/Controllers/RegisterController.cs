@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using JustChat.Api.Models.Users;
-using JustChat.Application.Commands.Users.Create;
+using JustChat.Application.Features.Commands.Users.Create;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

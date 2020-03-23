@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using FluentValidation.AspNetCore;
 using JustChat.Api.Hubs;
+using JustChat.Application.Features.Commands.Messages.Create;
+using JustChat.Mediator;
+using JustChat.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using JustChat.Persistence;
-using JustChat.Mediator;
-using System.Reflection;
-using FluentValidation.AspNetCore;
-using JustChat.Application.Commands.Messages.Create;
 using Microsoft.OpenApi.Models;
 
 namespace JustChat.Api

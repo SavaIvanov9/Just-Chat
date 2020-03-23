@@ -1,4 +1,5 @@
 ﻿using JustChat.Domain.Models.Rooms;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace JustChat.Persistence.Commands.Configurations
@@ -9,7 +10,13 @@ namespace JustChat.Persistence.Commands.Configurations
         {
             base.Configure(builder);
 
-            builder.OwnsOne(x => x.Type);
+            builder.OwnsOne(
+                entity => entity.Type,
+                b =>
+                {
+                    b.Property(x => x.Name).HasColumnName($"{nameof(RoomType)}{nameof(RoomType.Name)}");
+                    b.Property(x => x.Value).HasColumnName($"{nameof(RoomType)}{nameof(RoomType.Value)}");
+                });
         }
     }
 }
