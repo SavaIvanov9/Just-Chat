@@ -9,10 +9,5 @@ namespace JustChat.Domain.Models.Base
             : base(name, value)
         {
         }
-
-        protected Enumeration()
-            : base(string.Empty, 0)
-        {
-        }
     }
 }

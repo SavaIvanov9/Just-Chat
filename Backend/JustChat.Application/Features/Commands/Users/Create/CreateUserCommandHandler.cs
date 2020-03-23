@@ -4,7 +4,7 @@ using JustChat.Application.Interfaces;
 using JustChat.Domain.Models.Users;
 using MediatR;
 
-namespace JustChat.Application.Commands.Users.Create
+namespace JustChat.Application.Features.Commands.Users.Create
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, User>
     {

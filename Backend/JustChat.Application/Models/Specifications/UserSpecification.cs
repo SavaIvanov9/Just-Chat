@@ -1,6 +1,7 @@
-﻿using JustChat.Domain.Models.Users;
+﻿using JustChat.Application.Models.Specifications.Base;
+using JustChat.Domain.Models.Users;
 
-namespace JustChat.Application.Specifications
+namespace JustChat.Application.Models.Specifications
 {
     public class UserSpecification : BaseSpecification<User>
     {

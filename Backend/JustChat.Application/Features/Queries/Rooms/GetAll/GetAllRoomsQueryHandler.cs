@@ -2,10 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using JustChat.Application.Interfaces.Repositories;
+using JustChat.Application.Models.Specifications;
 using JustChat.Domain.Models.Rooms;
 using MediatR;
 
-namespace JustChat.Application.Queries.Rooms.GetAll
+namespace JustChat.Application.Features.Queries.Rooms.GetAll
 {
     public class GetAllRoomsQueryHandler : IRequestHandler<GetAllRoomsQuery, IReadOnlyList<Room>>
     {
@@ -18,7 +19,8 @@ namespace JustChat.Application.Queries.Rooms.GetAll
 
         public Task<IReadOnlyList<Room>> Handle(GetAllRoomsQuery request, CancellationToken cancellationToken)
         {
-            return _roomRespository.GetAllAsync();
+            var spec = RoomSpecification.GetAllSorted();
+            return _roomRespository.GetAllAsync(spec);
         }
     }
 }
