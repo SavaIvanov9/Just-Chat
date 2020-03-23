@@ -2,6 +2,7 @@
 using JustChat.Application.Interfaces.Repositories;
 using JustChat.Persistence.Commands.Repositories;
 using JustChat.Persistence.Interfaces;
+using JustChat.Persistence.Repositories;
 using JustChat.Persistence.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +16,7 @@ namespace JustChat.Persistence
             
             services.AddTransient(typeof(ISpecificationEvaluationService<>), typeof(SpecificationEvaluationService<>));
             services.AddTransient<IDataSeedingService, DataSeedingService>();
+            services.AddTransient(typeof(IReadableRepository<>), typeof(ReadableRepository<>));
             services.AddTransient(typeof(IMutatableRepository<>), typeof(MutatableRepository<>));
             services.AddTransient<IDataUnitOfWork, DataUnitOfWork>();
 

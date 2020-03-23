@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JustChat.Application.Interfaces;
 using JustChat.Application.Interfaces.Repositories;
+using JustChat.Persistence.Commands;
 using JustChat.Persistence.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,11 +12,11 @@ namespace JustChat.Persistence.Repositories
     public class ReadableRepository<TEntity> : IReadableRepository<TEntity>
          where TEntity : class
     {
-        protected readonly DbContext _dbContext;
+        protected readonly CommandDbContext _dbContext;
         private readonly ISpecificationEvaluationService<TEntity> _specificationEvaluationService;
 
         public ReadableRepository(
-            DbContext dbContext,
+            CommandDbContext dbContext,
             ISpecificationEvaluationService<TEntity> specificationEvaluationService)
         {
             _dbContext = dbContext;

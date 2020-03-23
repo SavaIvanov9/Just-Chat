@@ -28,9 +28,9 @@ namespace JustChat.Persistence.Services
 
             var rooms = new Room[]
             {
-                new Room("Family", RoomType.Default),
-                new Room("Friends", RoomType.Other),
-                new Room("Work", RoomType.Other),
+                new Room("Family", RoomType.Default()),
+                new Room("Friends", RoomType.Other()),
+                new Room("Work", RoomType.Other()),
             };
 
             _context.Rooms.AddRange(rooms);
