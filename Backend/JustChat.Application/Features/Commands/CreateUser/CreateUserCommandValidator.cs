@@ -12,7 +12,7 @@ namespace JustChat.Application.Features.Commands.CreateUser
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
-                .DoesNotExist(UserSpecification.FindByName, data.Users);
+                .DoesNotExist(UserSpecification.GetByName, data.Users);
         }
     }
 }

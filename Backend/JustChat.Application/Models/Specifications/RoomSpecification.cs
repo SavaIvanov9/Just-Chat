@@ -5,7 +5,7 @@ namespace JustChat.Application.Models.Specifications
 {
     public class RoomSpecification : BaseSpecification<Room>
     {
-        public static BaseSpecification<Room> FindById(string id) =>
+        public static BaseSpecification<Room> GetById(string id) =>
             new RoomSpecification()
                 .AddCriteria(x => x.Id == id);
 

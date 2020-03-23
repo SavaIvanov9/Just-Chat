@@ -12,11 +12,11 @@ namespace JustChat.Application.Features.Commands.CreateMessage
         {
             RuleFor(x => x.UserId)
                 .NotEmpty()
-                .Exists(UserSpecification.FindById, data.Users);
+                .Exists(UserSpecification.GetById, data.Users);
 
             RuleFor(x => x.RoomId)
                 .NotEmpty()
-                .Exists(RoomSpecification.FindById, data.Rooms);
+                .Exists(RoomSpecification.GetById, data.Rooms);
 
             RuleFor(x => x.Content)
                 .NotEmpty();

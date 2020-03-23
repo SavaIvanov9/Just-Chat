@@ -18,7 +18,7 @@ namespace JustChat.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GetRoomResponse>>> GetAll()
         {
-            var rooms = await Mediator.Send(new GetAllRoomsQuery());
+            var rooms = await Mediator.Send(new GetRoomsQuery());
 
             var result = rooms.Select(x =>
                 new GetRoomResponse

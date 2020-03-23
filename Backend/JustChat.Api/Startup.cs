@@ -1,7 +1,7 @@
 using System.Reflection;
 using FluentValidation.AspNetCore;
 using JustChat.Api.Hubs;
-using JustChat.Application.Features.Commands.Messages.Create;
+using JustChat.Application.Features.Commands.CreateMessage;
 using JustChat.Mediator;
 using JustChat.Persistence;
 using Microsoft.AspNetCore.Builder;

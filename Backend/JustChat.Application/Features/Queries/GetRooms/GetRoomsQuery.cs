@@ -4,7 +4,7 @@ using JustChat.Domain.Models.Rooms;
 
 namespace JustChat.Application.Features.Queries.Rooms.GetRooms
 {
-    public class GetAllRoomsQuery : IQuery<IReadOnlyList<Room>>
+    public class GetRoomsQuery : IQuery<IReadOnlyList<Room>>
     {
     }
 }
