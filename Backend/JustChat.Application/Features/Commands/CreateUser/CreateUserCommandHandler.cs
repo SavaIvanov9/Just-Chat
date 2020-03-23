@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using JustChat.Application.Features.Commands.CreateUser;
 using JustChat.Application.Interfaces;
 using JustChat.Domain.Models.Users;
 using MediatR;

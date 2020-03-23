@@ -1,7 +1,7 @@
 ﻿using JustChat.Application.Interfaces;
 using JustChat.Domain.Models.Rooms;
 
-namespace JustChat.Application.Features.Commands.Messages.Create
+namespace JustChat.Application.Features.Commands.CreateMessage
 {
     public class CreateMessageCommand : ICommand<Message>
     {

@@ -4,7 +4,7 @@ using JustChat.Application.Interfaces;
 using JustChat.Domain.Models.Rooms;
 using MediatR;
 
-namespace JustChat.Application.Features.Commands.Messages.Create
+namespace JustChat.Application.Features.Commands.CreateMessage
 {
     public class CreateMessageCommandHandler : IRequestHandler<CreateMessageCommand, Message>
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using JustChat.Api.Models.Rooms;
-using JustChat.Application.Features.Queries.Rooms.GetAll;
+using JustChat.Application.Features.Queries.Rooms.GetRooms;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

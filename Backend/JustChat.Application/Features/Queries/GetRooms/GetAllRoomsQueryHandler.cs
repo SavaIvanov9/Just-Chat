@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using JustChat.Application.Features.Queries.Rooms.GetRooms;
 using JustChat.Application.Interfaces.Repositories;
 using JustChat.Application.Models.Specifications;
 using JustChat.Domain.Models.Rooms;

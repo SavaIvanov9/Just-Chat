@@ -4,7 +4,7 @@ using JustChat.Application.Interfaces;
 using JustChat.Application.Models.Specifications;
 using JustChat.Application.Validation;
 
-namespace JustChat.Application.Features.Commands.Messages.Create
+namespace JustChat.Application.Features.Commands.CreateMessage
 {
     public class CreateMessageCommandValidator : RequestValidator<CreateMessageCommand>
     {
