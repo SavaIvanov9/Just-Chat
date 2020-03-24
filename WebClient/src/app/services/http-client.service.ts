@@ -4,16 +4,15 @@ import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import { Observable, of, empty } from 'rxjs';
 import { map, take, catchError } from 'rxjs/operators';
 
-import { ErrorLoggerService } from './error-logger.service';
+import { LoggerService } from './logger.service';
 import { UiNotificationService } from './ui-notifications.service';
 
 @Injectable()
 export class HttpClientService {
     constructor(
         private http: Http,
-        private errorLogger: ErrorLoggerService,
-        private router: Router,
-        private uiNotificationService: UiNotificationService
+        private logger: LoggerService,
+        private router: Router
     ) { }
 
     public get(
@@ -66,10 +65,9 @@ export class HttpClientService {
             }),
             catchError((error: any) => {
                 if (this.getStatusGroup(error.status) === '5') {
-                    this.errorLogger.log(error);
-                    this.uiNotificationService.showError(error._body);
+                    this.logger.logError(error);
                 } else if (this.getStatusGroup(error.status) === '4') {
-                    this.uiNotificationService.showWarn(error._body);
+                    this.logger.logInfo(error);
                 }
 
                 if (errorCallback) {
