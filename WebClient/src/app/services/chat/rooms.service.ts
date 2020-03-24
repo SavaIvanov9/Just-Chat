@@ -31,7 +31,9 @@ export class RoomsService {
     }
 
     public get currentRoomName(): string {
-        return this.currentRoom.name;
+        if (this.currentRoom) {
+            return this.currentRoom.name;
+        }
     }
 
     public sendMessage(content: string): void {

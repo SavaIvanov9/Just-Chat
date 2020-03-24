@@ -39,6 +39,10 @@ export class RoomsComponent implements OnInit, OnDestroy {
     return this.currentUserService.username;
   }
 
+  public get currentRoomName(): string {
+    return this.roomsService.currentRoomName;
+  }
+
   ngOnInit(): void {
     const onSuccess = (rooms: Array<GetRoomResponse>) => {
       this.rooms = rooms;
