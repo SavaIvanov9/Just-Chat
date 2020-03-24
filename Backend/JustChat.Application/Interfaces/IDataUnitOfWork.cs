@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using JustChat.Application.Interfaces.Repositories;
 using JustChat.Domain.Models.Rooms;
+using JustChat.Domain.Models.Token;
 using JustChat.Domain.Models.Users;
 
 namespace JustChat.Application.Interfaces
@@ -17,6 +18,8 @@ namespace JustChat.Application.Interfaces
         Task CommitAsync(CancellationToken cancellationToken = default);
 
         IMutatableRepository<User> Users { get; }
+
+        IMutatableRepository<Token> Tokens { get; }
 
         IMutatableRepository<Room> Rooms { get; }
 
