@@ -1,0 +1,11 @@
+.default-button {
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 18px;
+  color: rgb(1, 107, 168);
+  &:hover {
+    color: rgb(0, 82, 126);
+    text-decoration: underline;
+  }
+}

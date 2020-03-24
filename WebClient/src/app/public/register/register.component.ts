@@ -63,15 +63,20 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  updateModel() {
+  public updateModel() {
     this.registerData.username = this.userNameFormControl.value;
     this.registerData.password = this.passwordFormControl.value;
   }
 
-  validateInputData(): boolean {
+  public validateInputData(): boolean {
     const hasError = this.ValidatePassword() || this.ValidateUserName();
     return hasError === false;
   }
+
+  public goToLogin(): void {
+    this.router.navigate(['login']);
+  }
+
 
   private ValidatePassword() {
     return (

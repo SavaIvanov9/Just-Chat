@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../external-modules/angular-material.module';
 import { AppButtonComponent } from './app-button/app-button.component';
 import { AppNotificationsComponent } from './app-notifications/app-notifications.component';
+import { TextButtonComponent } from './text-button/text-button.component';
 
 @NgModule({
   imports: [
@@ -13,12 +14,14 @@ import { AppNotificationsComponent } from './app-notifications/app-notifications
     AngularMaterialModule],
   declarations: [
     AppButtonComponent,
-    AppNotificationsComponent
+    AppNotificationsComponent,
+    TextButtonComponent
   ],
   providers: [],
   exports: [
     AppButtonComponent,
-    AppNotificationsComponent
+    AppNotificationsComponent,
+    TextButtonComponent
   ]
 })
 export class ControlsModule { }

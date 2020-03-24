@@ -23,10 +23,12 @@ import { AppComponent } from './app.component';
 import { RoomsComponent } from './public/rooms/rooms.component';
 import { RegisterComponent } from './public/register/register.component';
 import { MatIconRegistry } from '@angular/material';
+import { LoginComponent } from './public/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     RegisterComponent,
     RoomsComponent
   ],
