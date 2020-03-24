@@ -1,11 +1,20 @@
 using System.Reflection;
+using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using JustChat.Api.Hubs;
+using JustChat.Api.Middlewares;
+using JustChat.Api.TokenValidation;
 using JustChat.Application.Features.Commands.CreateMessage;
 using JustChat.Mediator;
 using JustChat.Persistence;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +25,7 @@ namespace JustChat.Api
     public class Startup
     {
         private const string _corsPolicyName = "default";
+        private const string _messageHubEndpoint = "/api/chat";
 
         public Startup(IConfiguration configuration)
         {
@@ -41,10 +51,48 @@ namespace JustChat.Api
                         .AllowCredentials());
             });
 
+            services.AddScoped<AuthGuardFilter>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            { 
+                options.SecurityTokenValidators.Add(
+                    new TokenValidator(services.BuildServiceProvider().GetRequiredService<IMediator>()));
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        var accessToken = context.Request.Query["access_token"];
+
+                        var path = context.HttpContext.Request.Path;
+                        if (string.IsNullOrEmpty(accessToken) == false
+                            && path.StartsWithSegments(_messageHubEndpoint))
+                        {
+                            context.Token = accessToken;
+                        }
+
+                        return Task.CompletedTask;
+                    }
+                };
+            });
+
             services.AddSignalR();
+            services.AddSingleton<IUserIdProvider, UserIdProvider>();
+
+            services.AddDataProtection()
+                .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
+                    {
+                        EncryptionAlgorithm = EncryptionAlgorithm.AES_256_GCM,
+                        ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+                    });
 
             var commandDbConnectionString = Configuration.GetConnectionString("commandDbConnection");
             services.RegisterPersistenceDepenencies(commandDbConnectionString);
+            services.RegisterApplicationDepenencies(Configuration);
 
             RegisterMediator(services);
             RegisterSwagger(services);
@@ -67,12 +115,20 @@ namespace JustChat.Api
 
             app.UseRouting();
             app.UseCors(_corsPolicyName);
+
+            app.UseAuthentication();
             app.UseAuthorization();
+  
+            app.UseWhen(
+                httpContext => httpContext.Request.Path.StartsWithSegments(_messageHubEndpoint) == false,
+                x => x.UseMiddleware<ExceptionHandlingMiddleware>());
+
+            //app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<MessageHub>("/api/MessageHub");
+                endpoints.MapHub<MessageHub>(_messageHubEndpoint);
             });
         }
 
