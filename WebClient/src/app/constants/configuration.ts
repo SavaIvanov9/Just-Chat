@@ -1,4 +1,5 @@
 export const ApiUrl = 'http://localhost:9468/api/';
 export const RegisterUrl = `${ApiUrl}Register`;
-export const MessageHubUrl = `${ApiUrl}MessageHub`;
-export const MessageHubReconnectInterval = 5000;
+export const RoomUrl = `${ApiUrl}Room`;
+export const ChatUrl = `${ApiUrl}chat`;
+export const ChatReconnectInterval = 5000;
