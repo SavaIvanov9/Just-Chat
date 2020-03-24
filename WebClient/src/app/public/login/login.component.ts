@@ -16,16 +16,18 @@ import { UiNotificationService } from '../../services/ui-notifications.service';
 export class LoginComponent implements OnInit {
   loginData: LoginRequest = new LoginRequest();
 
-  UsernameFormControl = new FormControl(this.loginData.password, [
-    Validators.pattern(UserNameRegex),
-    Validators.required
-  ]);
-
-  PasswordFormControl = new FormControl(this.loginData.password, [
+  passwordFormControl = new FormControl(this.loginData.password, [
     Validators.required,
     Validators.pattern(PasswordRegex),
-    Validators.maxLength(30),
+    Validators.maxLength(50),
     Validators.minLength(5)
+  ]);
+
+  usernameFormControl = new FormControl(this.loginData.username, [
+    Validators.required,
+    Validators.pattern(UserNameRegex),
+    Validators.maxLength(50),
+    Validators.minLength(1)
   ]);
 
   constructor(
@@ -60,19 +62,30 @@ export class LoginComponent implements OnInit {
   }
 
   public updateModel(): void {
-    this.loginData.username = this.UsernameFormControl.value;
-    this.loginData.password = this.PasswordFormControl.value;
+    this.loginData.username = this.usernameFormControl.value;
+    this.loginData.password = this.passwordFormControl.value;
   }
 
   public validateLoginData(): boolean {
-    const hasError =
-      this.UsernameFormControl.hasError('required') ||
-      this.UsernameFormControl.hasError('pattern') ||
-      this.PasswordFormControl.hasError('required') ||
-      this.PasswordFormControl.hasError('pattern') ||
-      this.PasswordFormControl.hasError('maxlength') ||
-      this.PasswordFormControl.hasError('minlength');
-
+    const hasError = this.ValidatePassword() || this.ValidateUserName();
     return hasError === false;
+  }
+
+  private ValidatePassword() {
+    return (
+      this.passwordFormControl.hasError('required') ||
+      this.passwordFormControl.hasError('pattern') ||
+      this.passwordFormControl.hasError('maxlength') ||
+      this.passwordFormControl.hasError('minlength')
+    );
+  }
+
+  private ValidateUserName() {
+    return (
+      this.usernameFormControl.hasError('required') ||
+      this.usernameFormControl.hasError('pattern') ||
+      this.usernameFormControl.hasError('maxlength') ||
+      this.usernameFormControl.hasError('minlength')
+    );
   }
 }

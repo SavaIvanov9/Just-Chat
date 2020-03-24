@@ -24,14 +24,14 @@ export class RegisterComponent implements OnInit {
   passwordFormControl = new FormControl(this.registerData.password, [
     Validators.required,
     Validators.pattern(PasswordRegex),
-    Validators.maxLength(30),
+    Validators.maxLength(50),
     Validators.minLength(5)
   ]);
 
   userNameFormControl = new FormControl(this.registerData.username, [
     Validators.required,
     Validators.pattern(UserNameRegex),
-    Validators.maxLength(20),
+    Validators.maxLength(50),
     Validators.minLength(1)
   ]);
 

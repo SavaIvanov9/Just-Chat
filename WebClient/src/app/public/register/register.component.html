@@ -4,15 +4,18 @@
     <!-- username -->
     <mat-form-field class="full-width">
       <input [formControl]="userNameFormControl" matInput placeholder="Username" minlength="1" maxlength="50" required />
-      <mat-error *ngIf="userNameFormControl.hasError('required')">
-        Username is <strong>required</strong>
-      </mat-error>
-      <mat-error *ngIf="userNameFormControl.hasError('minlength')">
-        Username must be minimum 1 character long
-      </mat-error>
-      <mat-error *ngIf="userNameFormControl.hasError('maxlength')">
-        Username can be maximum 50 characters long
-      </mat-error>
+      <mat-error *ngIf="usernameFormControl.hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="usernameFormControl.hasError('pattern')">
+          Username is not valid
+        </mat-error>
+        <mat-error *ngIf="userNameFormControl.hasError('minlength')">
+          Username must be minimum 1 character long
+        </mat-error>
+        <mat-error *ngIf="userNameFormControl.hasError('maxlength')">
+          Username can be maximum 50 characters long
+        </mat-error>
     </mat-form-field>
 
     <!-- password -->
@@ -28,7 +31,7 @@
         Password must be minimum 5 characters long
       </mat-error>
       <mat-error *ngIf="passwordFormControl.hasError('maxlength')">
-        Password can be maximum 30 characters long
+        Password can be maximum 50 characters long
       </mat-error>
     </mat-form-field>
 

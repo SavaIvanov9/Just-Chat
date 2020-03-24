@@ -1,29 +1,36 @@
 <div class="container">
-    <h3 id="title">Wellcome</h3>
+  <h3 id="title">Wellcome</h3>
   <form id="login-form">
     <mat-form-field class="full-width">
-      <input [formControl]="UsernameFormControl" matInput placeholder="Username" required />
-      <mat-error *ngIf="UsernameFormControl.hasError('required')">
-          Username is <strong>required</strong>
+      <input [formControl]="usernameFormControl" matInput placeholder="Username" required />
+      <mat-error *ngIf="usernameFormControl.hasError('required')">
+        Username is <strong>required</strong>
       </mat-error>
-      <mat-error *ngIf="UsernameFormControl.hasError('pattern')">
-          Username is not valid
+      <mat-error *ngIf="usernameFormControl.hasError('pattern')">
+        Username is not valid
+      </mat-error>
+      <mat-error *ngIf="userNameFormControl.hasError('minlength')">
+        Username must be minimum 1 character long
+      </mat-error>
+      <mat-error *ngIf="userNameFormControl.hasError('maxlength')">
+        Username can be maximum 50 characters long
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input [formControl]="PasswordFormControl" matInput type="password" placeholder="Password" minlength="5" maxlength="30" required />
-      <mat-error *ngIf="PasswordFormControl.hasError('required')">
+      <input [formControl]="passwordFormControl" matInput type="password" placeholder="Password" minlength="5"
+        maxlength="30" required />
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
         Password is <strong>required</strong>
       </mat-error>
-      <mat-error *ngIf="PasswordFormControl.hasError('pattern')">
+      <mat-error *ngIf="passwordFormControl.hasError('pattern')">
         Password is not valid
       </mat-error>
-      <mat-error *ngIf="PasswordFormControl.hasError('minlength')">
+      <mat-error *ngIf="passwordFormControl.hasError('minlength')">
         Password must be minimum 5 characters long
       </mat-error>
-      <mat-error *ngIf="PasswordFormControl.hasError('maxlength')">
-        Password can be maximum 30 characters long
+      <mat-error *ngIf="passwordFormControl.hasError('maxlength')">
+        Password can be maximum 50 characters long
       </mat-error>
     </mat-form-field>
 
