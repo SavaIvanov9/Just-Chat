@@ -5,11 +5,11 @@ namespace JustChat.Domain.Models.Rooms
 {
     public class Message : Entity, IAggregateRoot
     {
-        private string _userId;
-        private string _roomId;
+        private long _userId;
+        private long _roomId;
         private string _content;
 
-        public Message(string userId, string roomId, string content)
+        public Message(long userId, long roomId, string content)
             : this()
         {
             UserId = userId;
@@ -22,7 +22,7 @@ namespace JustChat.Domain.Models.Rooms
         {
         }
 
-        public string UserId
+        public long UserId
         {
             get => _userId;
             private set
@@ -32,7 +32,7 @@ namespace JustChat.Domain.Models.Rooms
             }
         }
 
-        public string RoomId
+        public long RoomId
         {
             get => _roomId;
             private set

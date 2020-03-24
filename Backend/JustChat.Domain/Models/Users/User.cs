@@ -6,17 +6,18 @@ namespace JustChat.Domain.Models.Users
     public class User : Entity, IAggregateRoot
     {
         private string _name;
+        private string _password;
 
-        public User(string name)
+        public User(string name, string password)
             : this()
         {
             Name = name;
+            Password = password;
         }
 
         protected User()
             : base(() => new EntityValidator())
         {
-
         }
 
         public string Name
@@ -26,6 +27,16 @@ namespace JustChat.Domain.Models.Users
             {
                 _name = value;
                 ValidateProperty(nameof(Name));
+            }
+        }
+
+        public string Password
+        {
+            get => _password;
+            private set
+            {
+                _password = value;
+                ValidateProperty(nameof(Password));
             }
         }
     }

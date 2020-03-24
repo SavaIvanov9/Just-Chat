@@ -10,7 +10,7 @@ namespace JustChat.Domain.Models.Base
     public abstract class Entity : Validatable, IEntity
     {
         private HashSet<IDomainEvent> _domainEvents;
-        private string _id;
+        private long _id;
 
         protected Entity(Func<IValidator> validatorFactory)
             : base(validatorFactory)
@@ -18,7 +18,7 @@ namespace JustChat.Domain.Models.Base
             _domainEvents = new HashSet<IDomainEvent>();
         }
 
-        public string Id
+        public long Id
         {
             get => _id;
             private set
