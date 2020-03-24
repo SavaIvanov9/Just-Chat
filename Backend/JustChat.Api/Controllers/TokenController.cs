@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using JustChat.Api.Models.Tokens;
-using JustChat.Api.TokenValidation;
-using JustChat.Application.Features.Commands.ValidateToken;
+﻿using JustChat.Api.TokenValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,16 +12,9 @@ namespace JustChat.Api.Controllers
         {
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Validate([FromBody]ValidateTokenRequest request)
+        [HttpGet]
+        public ActionResult Validate()
         {
-            var command = new ValidateTokenCommand
-            {
-                Value = request.Token
-            };
-
-            await Mediator.Send(command);
-
             return this.Ok();
         }
     }

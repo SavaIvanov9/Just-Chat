@@ -1,3 +1,4 @@
+import { CurrentUserService } from 'src/app/services/authentication/current-user.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Headers, RequestOptionsArgs } from '@angular/http';
@@ -12,7 +13,8 @@ export class HttpClientService {
     constructor(
         private http: Http,
         private logger: LoggerService,
-        private router: Router
+        private router: Router,
+        private currentUserService: CurrentUserService
     ) { }
 
     public get(
@@ -87,6 +89,11 @@ export class HttpClientService {
 
     private createAuthorizationHeader(): Headers {
         const headers = new Headers({ 'Content-Type': 'application/json' });
+
+        if (this.currentUserService.token) {
+            headers.set('Bearer', this.currentUserService.token);
+        }
+
         return headers;
     }
 }

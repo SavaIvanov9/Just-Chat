@@ -1,4 +1,4 @@
-import { CanActivate, UrlTree, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
@@ -10,12 +10,14 @@ export class AuthenticationGuard implements CanActivate {
     private authService: AuthenticationService,
     private router: Router) { }
 
-  canActivate(): Observable<boolean | UrlTree> {
-    if (this.authService.IsAuthenticated) {
-      return of(true);
-    }
-
-    this.router.navigate(['/home']);
-    return of(false);
+  canActivate(): Observable<boolean> {
+    return this.authService.validateToken(
+      () => {
+        return true;
+      },
+      () => {
+        this.router.navigate(['/home']);
+        return false;
+      });
   }
 }
