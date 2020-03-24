@@ -38,9 +38,14 @@ namespace JustChat.Persistence.Repositories
             return await ApplySpecification(spec).ToListAsync();
         }
 
-        public async Task<TEntity> GetAsync(string id)
+        public async Task<TEntity> GetAsync(long id)
         {
             return await _dbContext.Set<TEntity>().FindAsync(id);
+        }
+
+        public async Task<TEntity> SingleOrDefaultAsync(ISpecification<TEntity> spec)
+        {
+            return await ApplySpecification(spec).SingleOrDefaultAsync();
         }
 
         private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> spec)

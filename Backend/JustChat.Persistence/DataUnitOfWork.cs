@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using JustChat.Application.Interfaces;
 using JustChat.Application.Interfaces.Repositories;
 using JustChat.Domain.Models.Rooms;
+using JustChat.Domain.Models.Token;
 using JustChat.Domain.Models.Users;
 using JustChat.Persistence.Commands;
 
@@ -15,16 +16,20 @@ namespace JustChat.Persistence
         public DataUnitOfWork(
             CommandDbContext commandDbContext,
             IMutatableRepository<User> users,
+            IMutatableRepository<Token> tokens,
             IMutatableRepository<Room> rooms,
             IMutatableRepository<Message> messages)
         {
             _commandDbContext = commandDbContext;
             Users = users;
+            Tokens = tokens;
             Rooms = rooms;
             Messages = messages;
         }
 
         public IMutatableRepository<User> Users { get; }
+        
+        public IMutatableRepository<Token> Tokens { get; }
 
         public IMutatableRepository<Room> Rooms { get; }
 

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using JustChat.Domain.Interfaces;
 using JustChat.Domain.Models.Rooms;
+using JustChat.Domain.Models.Token;
 using JustChat.Domain.Models.Users;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,8 @@ namespace JustChat.Persistence.Commands
         public bool HasActiveTransaction => _currentTransaction != null;
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Token> Tokens { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
 

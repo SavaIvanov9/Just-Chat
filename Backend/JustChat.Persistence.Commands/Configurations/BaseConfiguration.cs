@@ -29,7 +29,7 @@ namespace JustChat.Persistence.Commands.Configurations
                 .HasQueryFilter(x => EF.Property<bool>(x, nameof(IDeletable.IsDeleted)) == false);
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.Id).UseHiLo();
 
             builder.Ignore(x => x.DomainEvents);
         }
