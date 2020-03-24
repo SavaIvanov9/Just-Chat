@@ -5,9 +5,9 @@ namespace JustChat.Application.Features.Commands.CreateMessage
 {
     public class CreateMessageCommand : ICommand<Message>
     {
-        public string UserId { get; set; }
+        public long UserId { get; set; }
 
-        public string RoomId { get; set; }
+        public long RoomId { get; set; }
 
         public string Content { get; set; }
     }

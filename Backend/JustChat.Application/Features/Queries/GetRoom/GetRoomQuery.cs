@@ -5,6 +5,6 @@ namespace JustChat.Application.Features.Queries.GetRoom
 {
     public class GetRoomQuery : IQuery<Room>
     {
-        public string Id { get; set; }
+        public long Id { get; set; }
     }
 }
