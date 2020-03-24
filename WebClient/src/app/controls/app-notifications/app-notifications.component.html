@@ -1,0 +1,23 @@
+<div class="container" *ngIf="notification">
+  <div *ngIf="notification.isActive" (click)="deactivate(notification)">
+    <div *ngIf="notification.type === 'Success'" class="notification-msg success">
+      <p *ngIf="notification.content">{{ notification.content }}</p>
+      <mat-icon svgIcon="close" class="close-icon"></mat-icon>
+    </div>
+
+    <div *ngIf="notification.type === 'Info'" class="notification-msg info">
+      <p *ngIf="notification.content">{{ notification.content }}</p>
+      <mat-icon svgIcon="close" class="close-icon"></mat-icon>
+    </div>
+
+    <div *ngIf="notification.type === 'Warning'" class="notification-msg warning">
+      <p *ngIf="notification.content">{{ notification.content }}</p>
+      <mat-icon svgIcon="close" class="close-icon"></mat-icon>
+    </div>
+
+    <div *ngIf="notification.type === 'Error'" class="notification-msg error">
+      <p *ngIf="notification.content">{{ notification.content }}</p>
+      <mat-icon svgIcon="close" class="close-icon"></mat-icon>
+    </div>
+  </div>
+</div>

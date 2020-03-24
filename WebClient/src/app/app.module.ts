@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,6 +22,7 @@ import { RoomsService } from './services/chat/rooms.service';
 import { AppComponent } from './app.component';
 import { RoomsComponent } from './public/rooms/rooms.component';
 import { RegisterComponent } from './public/register/register.component';
+import { MatIconRegistry } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -52,4 +53,10 @@ import { RegisterComponent } from './public/register/register.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+    matIconRegistry.addSvgIconSet(
+      domSanitizer.bypassSecurityTrustResourceUrl('./assets/images/mdi.svg')
+    );
+  }
+}

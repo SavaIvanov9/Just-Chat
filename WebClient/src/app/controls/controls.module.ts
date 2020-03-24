@@ -4,11 +4,21 @@ import { CommonModule } from '@angular/common';
 
 import { AngularMaterialModule } from '../external-modules/angular-material.module';
 import { AppButtonComponent } from './app-button/app-button.component';
+import { AppNotificationsComponent } from './app-notifications/app-notifications.component';
 
 @NgModule({
-  imports: [FormsModule, CommonModule, AngularMaterialModule],
-  declarations: [AppButtonComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    AngularMaterialModule],
+  declarations: [
+    AppButtonComponent,
+    AppNotificationsComponent
+  ],
   providers: [],
-  exports: [AppButtonComponent]
+  exports: [
+    AppButtonComponent,
+    AppNotificationsComponent
+  ]
 })
-export class ControlsModule {}
+export class ControlsModule { }
