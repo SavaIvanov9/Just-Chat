@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JustChat.Application.Models
+namespace JustChat.Application.Models.Configurations
 {
     public class TokenConfiguration
     {

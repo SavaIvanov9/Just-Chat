@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using JustChat.Application.Interfaces;
 using JustChat.Application.Interfaces.Services;
-using JustChat.Application.Models;
+using JustChat.Application.Models.Configurations;
 using JustChat.Domain.Interfaces;
 using JustChat.Domain.Models.Token;
 using JustChat.Domain.Models.Users;

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
+using JustChat.Application.Exceptions;
 using MediatR;
 
 namespace JustChat.Mediator.Behaviors
@@ -32,7 +33,7 @@ namespace JustChat.Mediator.Behaviors
 
             if (failures.Count != 0)
             {
-                throw new ValidationException(failures);
+                throw new ValidationApplicationException(failures);
             }
 
             return await next();
