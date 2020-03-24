@@ -2,7 +2,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using JustChat.Api.Hubs;
+using JustChat.Api.Interfaces;
 using JustChat.Api.Middlewares;
+using JustChat.Api.Models;
 using JustChat.Api.TokenValidation;
 using JustChat.Application.Features.Commands.CreateMessage;
 using JustChat.Mediator;
@@ -93,6 +95,7 @@ namespace JustChat.Api
             var commandDbConnectionString = Configuration.GetConnectionString("commandDbConnection");
             services.RegisterPersistenceDepenencies(commandDbConnectionString);
             services.RegisterApplicationDepenencies(Configuration);
+            services.AddScoped<ICurrentUser, CurrentUser>();
 
             RegisterMediator(services);
             RegisterSwagger(services);

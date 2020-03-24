@@ -1,11 +1,11 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 
 import { CreateMessageRequest } from '../../models/create-message-request.model';
 import { CreateMessageResponse } from '../../models/create-message-response.model';
-import { GetRoomResponse } from 'src/app/models/get-room-response.model';
-import { RoomsService } from 'src/app/services/chat/rooms.service';
-import { CommunicationService } from 'src/app/services/chat/communication.service';
-import { CurrentUserService } from 'src/app/services/authentication/current-user.service';
+import { GetRoomResponse } from '../../models/get-room-response.model';
+import { RoomsService } from '../../services/chat/rooms.service';
+import { CommunicationService } from '../../services/chat/communication.service';
+import { CurrentUserService } from '../../services/authentication/current-user.service';
 
 @Component({
   selector: 'app-rooms',
@@ -16,11 +16,11 @@ export class RoomsComponent implements OnInit {
   title = 'JustChat';
   txtMessage = '';
   message = new CreateMessageRequest();
+  rooms: Array<GetRoomResponse> = [];
 
   constructor(
     private communicationService: CommunicationService,
     private roomsService: RoomsService,
-    private ngZone: NgZone,
     private currentUserService: CurrentUserService
   ) {
   }
@@ -39,6 +39,7 @@ export class RoomsComponent implements OnInit {
 
   ngOnInit(): void {
     const onSuccess = (rooms: Array<GetRoomResponse>) => {
+      this.rooms = rooms;
       this.roomsService.joinRoom(rooms[0].id);
     };
 
@@ -56,5 +57,9 @@ export class RoomsComponent implements OnInit {
       this.roomsService.sendMessage(this.txtMessage);
       this.txtMessage = '';
     }
+  }
+
+  public joinRoom(room: GetRoomResponse): void {
+    this.roomsService.joinRoom(room.id);
   }
 }

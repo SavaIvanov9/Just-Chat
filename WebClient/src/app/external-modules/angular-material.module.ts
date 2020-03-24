@@ -39,7 +39,7 @@ import {
     MatTableModule,
     MatTabsModule,
     MatSortModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
   exports: [
     MatButtonModule,

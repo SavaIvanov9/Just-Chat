@@ -71,7 +71,11 @@ export class RoomsService {
         }
 
         this.communicationService.joinRoom(
-            roomId, () => this.currentRoomId = roomId);
+            roomId,
+            () => {
+                this.messageResponses = [];
+                this.currentRoomId = roomId;
+            });
     }
 
     public leaveCurrentRoom(): void {

@@ -11,6 +11,7 @@ import { HttpClientService } from '../http-client.service';
 
 import { RegisterRequest } from '../../models/register-request.model';
 import { RegisterResponse } from '../../models/register-response.model';
+import { GetUserResponse } from './../../models/get-user-response.model';
 
 @Injectable()
 export class AuthenticationService {
@@ -64,11 +65,14 @@ export class AuthenticationService {
         errorCallback: any = null) {
         return this.httpClient.get(
             TokenUrl,
-            () => {
+            (response: GetUserResponse) => {
                 this.isAuthenticated = true;
                 if (successCallback) {
                     return successCallback();
                 }
+
+                this.currentUserService.userId = response.userId;
+                this.currentUserService.username = response.username;
             },
             () => {
                 this.isAuthenticated = false;
