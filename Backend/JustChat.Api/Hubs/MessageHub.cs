@@ -8,10 +8,12 @@ using JustChat.Application.Features.Commands.CreateMessage;
 using JustChat.Application.Features.Queries.GetRoom;
 using JustChat.Domain.Exceptions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
 namespace JustChat.Api.Hubs
 {
+    [Authorize]
     public class MessageHub : Hub
     {
         private readonly IMediator _mediator;
@@ -30,7 +32,7 @@ namespace JustChat.Api.Hubs
                 var message = await _mediator
                     .Send(new CreateMessageCommand
                     {
-                        UserId = request.UserId,
+                        UserId = long.Parse(Context.UserIdentifier),
                         RoomId = request.RoomId,
                         Content = request.Content
                     });
@@ -43,40 +45,52 @@ namespace JustChat.Api.Hubs
                 };
 
                 await Clients
-                    .Group(message.RoomId)
+                    .Group(message.RoomId.ToString())
                     .SendAsync(_receiveMessageName, response);
             }
 
             await HandleError(ProcessRequest);
         }
 
-        public async Task AddToGroup(string roomId)
+        public async Task JoinRoom(long roomId)
         {
             async Task ProcessRequest()
             {
                 var room = await _mediator.Send(new GetRoomQuery { Id = roomId });
 
-                await Groups.AddToGroupAsync(Context.ConnectionId, room.Id);
+                await Groups.AddToGroupAsync(Context.ConnectionId, room.Id.ToString());
+
+                var response = new CreateMessageResponse
+                {
+                    Content = $"{Context.User?.Identity?.Name} has joined the room {room.Name}.",
+                    Date = DateTime.UtcNow
+                };
 
                 await Clients
-                    .Group(room.Id)
-                    .SendAsync(_receiveMessageName, $"{Context.ConnectionId} has joined the room {room.Name}.");
+                    .Group(room.Id.ToString())
+                    .SendAsync(_receiveMessageName, response);
             }
 
             await HandleError(ProcessRequest);
         }
 
-        public async Task RemoveFromGroup(string roomId)
+        public async Task LeaveRoom(long roomId)
         {
             async Task ProcessRequest()
             {
                 var room = await _mediator.Send(new GetRoomQuery { Id = roomId });
 
-                await Groups.RemoveFromGroupAsync(Context.ConnectionId, room.Id);
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, room.Id.ToString());
+
+                var response = new CreateMessageResponse
+                {
+                    Content = $"{Context.User?.Identity?.Name} has left the room {room.Name}.",
+                    Date = DateTime.UtcNow
+                };
 
                 await Clients
-                    .Group(room.Id)
-                    .SendAsync(_receiveMessageName, $"{Context.ConnectionId} has left the room {room.Name}.");
+                    .Group(room.Id.ToString())
+                    .SendAsync(_receiveMessageName, response);
             }
 
             await HandleError(ProcessRequest);
@@ -106,7 +120,7 @@ namespace JustChat.Api.Hubs
 
                 await Clients.Caller.SendAsync(_handleErrorName, response);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 await Clients.Caller.SendAsync(_handleErrorName, exception.ToString());
             }
