@@ -1,3 +1,4 @@
 export class RegisterResponse {
-    public userId: string;
+    public token: string;
+    public userId: number;
 }

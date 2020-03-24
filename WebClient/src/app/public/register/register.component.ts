@@ -11,7 +11,7 @@ import { RegisterRequest } from 'src/app/models/register-request.model';
 import { RegisterResponse } from 'src/app/models/register-response.model';
 
 import { UiNotificationService } from 'src/app/services/ui-notifications.service';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     Validators.minLength(5)
   ]);
 
-  userNameFormControl = new FormControl(this.registerData.name, [
+  userNameFormControl = new FormControl(this.registerData.username, [
     Validators.required,
     Validators.pattern(UserNameRegex),
     Validators.maxLength(20),
@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
       this.authService.register(
         this.registerData,
         (result: RegisterResponse) => {
-          if (result.userId) {
+          if (result.token) {
             this.uiNotificationService.showSuccess('Successful registration');
             this.router.navigate(['rooms']);
           } else {
@@ -64,13 +64,12 @@ export class RegisterComponent implements OnInit {
   }
 
   updateModel() {
-    this.registerData.name = this.userNameFormControl.value;
+    this.registerData.username = this.userNameFormControl.value;
     this.registerData.password = this.passwordFormControl.value;
   }
 
   validateInputData(): boolean {
-    // const hasError = this.ValidatePassword() || this.ValidateUserName();
-    const hasError = this.ValidateUserName();
+    const hasError = this.ValidatePassword() || this.ValidateUserName();
     return hasError === false;
   }
 

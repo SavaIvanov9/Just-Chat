@@ -16,7 +16,7 @@
     </mat-form-field>
 
     <!-- password -->
-    <!-- <mat-form-field class="full-width">
+    <mat-form-field class="full-width">
       <input [formControl]="passwordFormControl" matInput placeholder="Password" minlength="5" maxlength="30" required />
       <mat-error *ngIf="passwordFormControl.hasError('required')">
         Password is <strong>required</strong>
@@ -30,7 +30,7 @@
       <mat-error *ngIf="passwordFormControl.hasError('maxlength')">
         Password can be maximum 30 characters long
       </mat-error>
-    </mat-form-field> -->
+    </mat-form-field>
 
     <app-button label="Register" (action)="register()"></app-button>
   </form>
