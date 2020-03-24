@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  sql:
+    image: "mcr.microsoft.com/mssql/server"
+    networks:
+      - app-tier
+
+  justchat.api:
+    image: ${DOCKER_REGISTRY-}justchatapi
+    build:
+      context: .
+      dockerfile: JustChat.Api/Dockerfile
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
+    driver: bridge
