@@ -1,7 +1,7 @@
 ﻿using JustChat.Domain.Interfaces;
 using JustChat.Domain.Models.Base;
 
-namespace JustChat.Domain.Models.Rooms
+namespace JustChat.Domain.Models.Messages
 {
     public class Message : Entity, IAggregateRoot
     {

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using JustChat.Application.Interfaces;
 using JustChat.Application.Interfaces.Repositories;
+using JustChat.Domain.Models.Messages;
 using JustChat.Domain.Models.Rooms;
 using JustChat.Domain.Models.Token;
 using JustChat.Domain.Models.Users;

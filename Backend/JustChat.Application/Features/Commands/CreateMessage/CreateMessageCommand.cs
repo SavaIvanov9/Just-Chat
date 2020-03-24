@@ -1,5 +1,5 @@
 ﻿using JustChat.Application.Interfaces;
-using JustChat.Domain.Models.Rooms;
+using JustChat.Domain.Models.Messages;
 
 namespace JustChat.Application.Features.Commands.CreateMessage
 {

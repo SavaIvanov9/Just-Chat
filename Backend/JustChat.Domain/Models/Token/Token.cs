@@ -67,6 +67,11 @@ namespace JustChat.Domain.Models.Token
             }
         }
 
+        public void ResetExpiration(TimeSpan time)
+        {
+            ValidTo = DateTime.UtcNow.Add(time);
+        }
+
         public void Encrypt(IEncryptionService encryptionService, string encriptionKey)
         {
             Value = encryptionService.Encrypt(Value, encriptionKey);

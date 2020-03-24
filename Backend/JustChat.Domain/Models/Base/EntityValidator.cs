@@ -3,7 +3,8 @@ using JustChat.Domain.Interfaces;
 
 namespace JustChat.Domain.Models.Base
 {
-    public class EntityValidator : AbstractValidator<IEntity>
+    public class EntityValidator<T> : AbstractValidator<T>
+        where T : IEntity
     {
         public EntityValidator()
         {

@@ -1,4 +1,5 @@
-﻿using JustChat.Domain.Models.Rooms;
+﻿using JustChat.Domain.Models.Messages;
+using JustChat.Domain.Models.Rooms;
 using JustChat.Domain.Models.Users;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

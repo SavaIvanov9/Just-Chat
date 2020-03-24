@@ -16,7 +16,7 @@ namespace JustChat.Domain.Models.Users
         }
 
         protected User()
-            : base(() => new EntityValidator())
+            : base(() => new UserValidator())
         {
         }
 

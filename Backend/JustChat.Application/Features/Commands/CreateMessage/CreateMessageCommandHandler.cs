@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using JustChat.Application.Interfaces;
-using JustChat.Domain.Models.Rooms;
+using JustChat.Domain.Models.Messages;
 using MediatR;
 
 namespace JustChat.Application.Features.Commands.CreateMessage
