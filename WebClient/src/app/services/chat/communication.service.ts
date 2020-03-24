@@ -24,7 +24,10 @@ export class CommunicationService {
         private currentUserService: CurrentUserService) {
         this.createConnection();
         this.registerOnServerEvents();
-        this.startConnection();
+    }
+
+    public get isConnected(): boolean {
+        return this.isConnectionEstablished;
     }
 
     public sendMessage(
@@ -99,6 +102,28 @@ export class CommunicationService {
             });
     }
 
+    public startConnection(
+        onSuccess: () => void = null,
+        onError: () => void = null): void {
+        this.hubConnection
+            .start()
+            .then(() => {
+                this.isConnectionEstablished = true;
+                this.logger.logInfo('Hub connection started');
+                this.connectionEstablished.emit(true);
+                if (onSuccess) {
+                    onSuccess();
+                }
+            })
+            .catch(err => {
+                this.logger.logError(`Error while establishing connection, retrying in ${ChatReconnectInterval / 1000} sec...`);
+                setTimeout(() => { this.startConnection(); }, ChatReconnectInterval);
+                if (onError) {
+                    onError();
+                }
+            });
+    }
+
     private createConnection(): void {
         this.hubConnection = new HubConnectionBuilder()
             .withUrl(ChatUrl, { accessTokenFactory: () => this.currentUserService.token })
@@ -109,20 +134,6 @@ export class CommunicationService {
         this.hubConnection
             .onclose(error => {
                 this.startConnection();
-            });
-    }
-
-    private startConnection(): void {
-        this.hubConnection
-            .start()
-            .then(() => {
-                this.isConnectionEstablished = true;
-                this.logger.logInfo('Hub connection started');
-                this.connectionEstablished.emit(true);
-            })
-            .catch(err => {
-                this.logger.logError(`Error while establishing connection, retrying in ${ChatReconnectInterval / 1000} sec...`);
-                setTimeout(() => { this.startConnection(); }, ChatReconnectInterval);
             });
     }
 

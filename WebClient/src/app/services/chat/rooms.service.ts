@@ -13,7 +13,7 @@ import { CurrentUserService } from '../authentication/current-user.service';
 
 @Injectable()
 export class RoomsService {
-    private currentRoomId: number;
+    private currentRoom: GetRoomResponse;
     private messageResponses = new Array<CreateMessageResponse>();
 
     constructor(
@@ -30,12 +30,15 @@ export class RoomsService {
         return this.messageResponses;
     }
 
+    public get currentRoomName(): string {
+        return this.currentRoom.name;
+    }
+
     public sendMessage(content: string): void {
-        if (this.currentRoomId) {
+        if (this.currentRoom) {
             const messageRequest = new CreateMessageRequest();
-            messageRequest.roomId = this.currentRoomId;
+            messageRequest.roomId = this.currentRoom.id;
             messageRequest.content = content;
-            // messageRequest.userId = this.currentUserService.token;
 
             this.communicationService.sendMessage(messageRequest);
         } else {
@@ -59,30 +62,41 @@ export class RoomsService {
                     if (onError) {
                         return onError();
                     }
-                    // return of(empty);
                 }
             )
             .subscribe();
     }
 
-    public joinRoom(roomId: number): void {
-        if (this.currentRoomId) {
+    public joinRoom(room: GetRoomResponse): void {
+        if (this.currentRoom) {
             this.leaveCurrentRoom();
         }
 
         this.communicationService.joinRoom(
-            roomId,
+            room.id,
             () => {
                 this.messageResponses = [];
-                this.currentRoomId = roomId;
+                this.currentRoom = room;
             });
     }
 
-    public leaveCurrentRoom(): void {
-        if (this.currentRoomId) {
+    public leaveCurrentRoom(
+        onSuccess: () => void = null,
+        onError: () => void = null): void {
+        if (this.currentRoom) {
             this.communicationService.leaveRoom(
-                this.currentRoomId,
-                () => this.currentRoomId = null);
+                this.currentRoom.id,
+                () => {
+                    this.currentRoom = null;
+                    if (onSuccess) {
+                        onSuccess();
+                    }
+                },
+                () => {
+                    if (onError) {
+                        onError();
+                    }
+                });
         }
     }
 
