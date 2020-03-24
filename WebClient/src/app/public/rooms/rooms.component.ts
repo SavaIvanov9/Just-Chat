@@ -1,4 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CreateMessageRequest } from '../../models/create-message-request.model';
 import { CreateMessageResponse } from '../../models/create-message-response.model';
@@ -21,7 +22,8 @@ export class RoomsComponent implements OnInit {
   constructor(
     private communicationService: CommunicationService,
     private roomsService: RoomsService,
-    private currentUserService: CurrentUserService
+    private currentUserService: CurrentUserService,
+    private router: Router
   ) {
   }
 
@@ -61,5 +63,11 @@ export class RoomsComponent implements OnInit {
 
   public joinRoom(room: GetRoomResponse): void {
     this.roomsService.joinRoom(room.id);
+  }
+
+  public logout() {
+    this.roomsService.leaveCurrentRoom();
+    this.currentUserService.clearData();
+    this.router.navigate(['/home']);
   }
 }
