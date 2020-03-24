@@ -8,5 +8,10 @@ namespace JustChat.Application.Exceptions
             : base(message)
         {
         }
+
+        public ApplicationException()
+            : base()
+        {
+        }
     }
 }
