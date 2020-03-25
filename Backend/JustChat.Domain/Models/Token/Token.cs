@@ -23,7 +23,7 @@ namespace JustChat.Domain.Models.Token
         }
 
         public Token()
-            : base(() => new EntityValidator())
+            : base(() => new TokenValidator())
         {
         }
 

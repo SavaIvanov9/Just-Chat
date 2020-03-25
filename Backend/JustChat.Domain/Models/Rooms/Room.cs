@@ -17,7 +17,7 @@ namespace JustChat.Domain.Models.Rooms
         }
 
         protected Room()
-            : base(() => new EntityValidator())
+            : base(() => new RoomValidator())
         {
         }
 

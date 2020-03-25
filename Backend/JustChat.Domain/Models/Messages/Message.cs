@@ -18,7 +18,7 @@ namespace JustChat.Domain.Models.Messages
         }
 
         protected Message()
-            : base(() => new EntityValidator())
+            : base(() => new MessageValidator())
         {
         }
 

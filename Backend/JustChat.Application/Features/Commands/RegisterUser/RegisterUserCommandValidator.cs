@@ -3,6 +3,7 @@ using JustChat.Application.Extensions;
 using JustChat.Application.Interfaces;
 using JustChat.Application.Models.Specifications;
 using JustChat.Application.Validation;
+using JustChat.Domain.Models.Users;
 
 namespace JustChat.Application.Features.Commands.RegisterUser
 {
@@ -12,10 +13,12 @@ namespace JustChat.Application.Features.Commands.RegisterUser
         {
             RuleFor(x => x.UserName)
                 .NotEmpty()
+                .SetValidator(new UsernameValidator())
                 .DoesNotExist(UserSpecification.GetByName, data.Users);
 
             RuleFor(x => x.Password)
-                .NotEmpty();
+                .NotEmpty()
+                .SetValidator(new PasswordValidator());
         }
     }
 }

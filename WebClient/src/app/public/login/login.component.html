@@ -9,10 +9,10 @@
       <mat-error *ngIf="usernameFormControl.hasError('pattern')">
         Username is not valid
       </mat-error>
-      <mat-error *ngIf="userNameFormControl.hasError('minlength')">
+      <mat-error *ngIf="usernameFormControl.hasError('minlength')">
         Username must be minimum 1 character long
       </mat-error>
-      <mat-error *ngIf="userNameFormControl.hasError('maxlength')">
+      <mat-error *ngIf="usernameFormControl.hasError('maxlength')">
         Username can be maximum 50 characters long
       </mat-error>
     </mat-form-field>

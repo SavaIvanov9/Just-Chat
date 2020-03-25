@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustChat.Mediator", "JustCh
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{33EACEF1-BEC9-4807-9A8E-8C9C4A0C1C9E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6821992D-46C7-46D4-A089-5FD0B14357B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustChat.Application.UnitTests", "JustChat.Application.UnitTests\JustChat.Application.UnitTests.csproj", "{5775BCD9-A33E-41B6-B6B7-AB27AD546834}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,10 @@ Global
 		{33EACEF1-BEC9-4807-9A8E-8C9C4A0C1C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33EACEF1-BEC9-4807-9A8E-8C9C4A0C1C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33EACEF1-BEC9-4807-9A8E-8C9C4A0C1C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5775BCD9-A33E-41B6-B6B7-AB27AD546834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5775BCD9-A33E-41B6-B6B7-AB27AD546834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5775BCD9-A33E-41B6-B6B7-AB27AD546834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5775BCD9-A33E-41B6-B6B7-AB27AD546834}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{02A148A6-6EBD-4104-BA92-1CE709A860EB} = {E6493C49-4E83-4960-A4B2-0F21499C5B84}
 		{0DAB4AC7-3DF0-46CB-947C-DB25476A205B} = {E6493C49-4E83-4960-A4B2-0F21499C5B84}
 		{B75CDF36-079A-4D30-9E14-82D81228F903} = {E6493C49-4E83-4960-A4B2-0F21499C5B84}
+		{5775BCD9-A33E-41B6-B6B7-AB27AD546834} = {6821992D-46C7-46D4-A089-5FD0B14357B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6995F90B-184C-410B-95B7-ED042150BB9A}

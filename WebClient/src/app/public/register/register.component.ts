@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     Validators.minLength(5)
   ]);
 
-  userNameFormControl = new FormControl(this.registerData.username, [
+  usernameFormControl = new FormControl(this.registerData.username, [
     Validators.required,
     Validators.pattern(UserNameRegex),
     Validators.maxLength(50),
@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public updateModel() {
-    this.registerData.username = this.userNameFormControl.value;
+    this.registerData.username = this.usernameFormControl.value;
     this.registerData.password = this.passwordFormControl.value;
   }
 
@@ -89,10 +89,10 @@ export class RegisterComponent implements OnInit {
 
   private ValidateUserName() {
     return (
-      this.userNameFormControl.hasError('required') ||
-      this.userNameFormControl.hasError('pattern') ||
-      this.userNameFormControl.hasError('maxlength') ||
-      this.userNameFormControl.hasError('minlength')
+      this.usernameFormControl.hasError('required') ||
+      this.usernameFormControl.hasError('pattern') ||
+      this.usernameFormControl.hasError('maxlength') ||
+      this.usernameFormControl.hasError('minlength')
     );
   }
 }

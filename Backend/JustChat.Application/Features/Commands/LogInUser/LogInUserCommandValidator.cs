@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using JustChat.Application.Interfaces;
 using JustChat.Application.Validation;
+using JustChat.Domain.Models.Users;
 
 namespace JustChat.Application.Features.Commands.LogInUser
 {
@@ -9,10 +10,12 @@ namespace JustChat.Application.Features.Commands.LogInUser
         public LogInUserCommandValidator(IDataUnitOfWork data)
         {
             RuleFor(x => x.UserName)
-                .NotEmpty();
+                .NotEmpty()
+                .SetValidator(new UsernameValidator());
 
             RuleFor(x => x.Password)
-                .NotEmpty();
+                .NotEmpty()
+                .SetValidator(new PasswordValidator());
         }
     }
 }
