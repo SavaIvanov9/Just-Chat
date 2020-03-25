@@ -2,7 +2,7 @@
 
 ### Description:
   Just a simple chat with rooms. Technologies used: ASP.NET Core Web Api 3.1, MsSQl Server, Angular 8.1.3, Docker,
-  Entity Framework Core 3.1.2, xUnit, FluentValidation, Mediatr, Angular Material
+  Entity Framework Core 3.1.2, SignalR, xUnit, FluentValidation, Mediatr, Angular Material
   
 ### Startup:
   -> To start the API run in Backend folder:
